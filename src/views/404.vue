@@ -1,0 +1,64 @@
+<script setup>
+import { onBeforeRouteLeave } from 'vue-router'
+const router = useRouter()
+
+const data = ref({
+    inter: null,
+    countdown: 5
+})
+
+onBeforeRouteLeave(() => {
+    clearInterval(data.value.inter)
+})
+
+onMounted(() => {
+    data.value.inter = setInterval(() => {
+        data.value.countdown--
+        if (data.value.countdown == 0) {
+            clearInterval(data.value.inter)
+            goBack()
+        }
+    }, 1000)
+})
+
+function goBack() {
+    router.push('/')
+}
+</script>
+
+<template>
+    <div class="notfound">
+        <svg-icon name="404" />
+        <div class="content">
+            <h1>404</h1>
+            <div class="desc">抱歉，你访问的页面不存在</div>
+            <el-button type="primary" @click="goBack">{{ data.countdown }} 秒后，返回首页</el-button>
+        </div>
+    </div>
+</template>
+
+<style lang="scss" scoped>
+.notfound {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 700px;
+    @include position-center(xy);
+    .svg-icon {
+        width: 400px;
+        height: 400px;
+    }
+    .content {
+        h1 {
+            margin: 0;
+            font-size: 72px;
+            color: #303133;
+        }
+        .desc {
+            margin: 20px 0 30px;
+            font-size: 20px;
+            color: #606266;
+        }
+    }
+}
+</style>
