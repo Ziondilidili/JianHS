@@ -34,6 +34,5 @@ import 'virtual:svg-icons-register'
 
 // 全局样式
 import '@/assets/styles/globals.scss'
-// 加载数据库
 
 app.mount('#app')

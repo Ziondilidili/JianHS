@@ -1,120 +1,28 @@
-<p align="center">
-    <img src="https://hooray.gitee.io/fantastic-admin/logo.png" width="200" height="200" />
-</p>
+开始
+做好准备工作后，请在项目根目录下依次执行以下命令：
 
-<h1 align="center">Fantastic-admin</h1>
+# 安装依赖
+# 注意，必须使用 pnpm 安装依赖，请勿使用 npm 或 yarn 安装依赖
+pnpm install
 
-<p align="center">一款<b>开箱即用</b>的 Vue 中后台管理系统框架</p>
+# 运行
+pnpm run dev
+运行成功后，会自动访问页面，默认情况下，地址为 http://localhost:9000
 
-## 特点
+# 启动数据库
+cd server
+node index.js
 
-- 丰富的布局与主题，覆盖市面上各种中后台应用场景，兼容PC、平板和移动端
-- 提供系统配置文件，轻松实现个性化定制
-- 精心设计的动效，让每一处的动画都干净利落
-- 根据路由配置自动生成导航栏
-- 支持全方位权限验证
-- 内置多级路由最佳缓存方案
-- 轻松实现国际化多语言适配
-- 提供接近于浏览器原生标签栏操作体验的标签页功能
+注意
 
-## 演示
+由于框架有使用到 husky 这个依赖包，所以请确保在安装依赖前，已经使用 git init 对项目进行过 git 环境初始化，否则安装依赖过程中会提示 husky 安装失败。
 
-**Vue3 版本**
+了解更多请阅读《代码规范 - husky & lint-staged》。
 
-[基础版](https://hooray.gitee.io/fantastic-admin/vue3/basic) ([备份地址](https://hooray.github.io/fantastic-admin/vue3/basic))
+此外，如果 git 仓库目录和框架目录并非同一个，则需要在 package.json 中修改 prepare 脚本，先切换到 git 所在目录。例如 git 目录是 project/ ，而框架目录是 project/fantastic-admin/ ，则在 package.json 里找到 "prepare": "husky install" 并修改为 "prepare": "cd .. && husky install" 即可。
 
-[专业版](https://hooray.gitee.io/fantastic-admin/vue3/pro) ([备份地址](https://hooray.github.io/fantastic-admin/vue3/pro))
+安装或运行报错
 
-**Vue2 版本**
+安装依赖时提示 404 ，或者安装结束后，运行时提示「 'vite' 不是内部或外部命令，也不是可运行的程序或批处理文件 」，都些都是依赖未安装成功导致的。可以尝试执行 pnpm config set registry https://registry.npmmirror.com/ 切换为国内淘宝源（也可以使用 nrm 一键切换源），然后删除根目录下 /node_modules 文件夹并重新安装依赖。
 
-[基础版](https://hooray.gitee.io/fantastic-admin/vue2/basic) ([备份地址](https://hooray.github.io/fantastic-admin/vue2/basic))
-
-[专业版](https://hooray.gitee.io/fantastic-admin/vue2/pro) ([备份地址](https://hooray.github.io/fantastic-admin/vue2/pro))
-
-## 下载 & 购买
-
-- 基础版（免费，可商用）
-  - 去 [Gitee](https://gitee.com/hooray/fantastic-admin) 下载
-  - 去 [Github](https://github.com/hooray/fantastic-admin) 下载
-- 专业版（付费，可商用）
-  - [去购买](https://hooray.gitee.io/fantastic-admin/buy.html) ([备份地址](https://hooray.github.io/fantastic-admin/buy.html))
-
-## 分支说明
-
-> 建议开发时，在本地同时下载演示分支和模版分支，模版分支用于项目开发，演示分支做为示例参考。
-
-- `master` Vue3 版本演示分支，同演示站
-- `template` Vue3 版本模版分支，移除演示代码，可直接用于实际开发
-- `vue2` Vue2 版本演示分支，同演示站
-- `template-vue2` Vue2 版本模版分支，移除演示代码，可直接用于实际开发
-
-## 技术支持
-
-[开发文档](https://hooray.gitee.io/fantastic-admin) ([备份地址](https://hooray.github.io/fantastic-admin))
-
-[Vue2版本视频教程](https://space.bilibili.com/3079082/channel/detail?cid=156985)
-
-技术交流QQ群：1001394973
-
-## 预览
-
-> 预览截图为 Vue3 专业版
-
-<table>
-    <tr>
-        <td><img src="https://hooray.gitee.io/fantastic-admin/preview1.png" /></td>
-        <td><img src="https://hooray.gitee.io/fantastic-admin/preview2.png" /></td>
-        <td><img src="https://hooray.gitee.io/fantastic-admin/preview3.png" /></td>
-    </tr>
-    <tr>
-        <td><img src="https://hooray.gitee.io/fantastic-admin/preview4.png" /></td>
-        <td><img src="https://hooray.gitee.io/fantastic-admin/preview5.png" /></td>
-        <td><img src="https://hooray.gitee.io/fantastic-admin/preview6.png" /></td>
-    </tr>
-</table>
-
-## 支持
-
-如果觉得 Fantastic-admin 这个框架不错，或者已经在使用了，希望你可以在 **Github** 或者 **Gitee(码云)** 帮我点个 ⭐ ，这将对我是极大的鼓励。
-
-[![star](https://img.shields.io/github/stars/hooray/fantastic-admin?style=social)](https://github.com/hooray/fantastic-admin/stargazers)
-
-[![star](https://gitee.com/hooray/fantastic-admin/badge/star.svg?theme=dark)](https://gitee.com/hooray/fantastic-admin/stargazers)
-
-## 生态
-
-<table>
-    <tr>
-        <th colspan="3" align="center">
-            <a href="https://hooray.gitee.io/fantastic-template" target="_blank">Fantastic-template</a>
-        </th>
-    </tr>
-    <tr>
-        <th colspan="3" align="center">
-            一款开箱即用的 Vue 项目模版
-        </th>
-    </tr>
-</table>
-
-<table>
-    <tr>
-        <th colspan="3" align="center">
-            <a href="https://hooray.gitee.io/one-step-admin" target="_blank">One-step-admin</a>
-        </th>
-    </tr>
-    <tr>
-        <th colspan="3" align="center">
-            一款干啥都快人一步的 Vue 中后台管理系统框架
-        </th>
-    </tr>
-    <tr>
-        <td><img src="https://hooray.gitee.io/one-step-admin/preview1.png" /></td>
-        <td><img src="https://hooray.gitee.io/one-step-admin/preview2.png" /></td>
-        <td><img src="https://hooray.gitee.io/one-step-admin/preview3.png" /></td>
-    </tr>
-    <tr>
-        <td><img src="https://hooray.gitee.io/one-step-admin/preview4.png" /></td>
-        <td><img src="https://hooray.gitee.io/one-step-admin/preview5.png" /></td>
-        <td><img src="https://hooray.gitee.io/one-step-admin/preview6.png" /></td>
-    </tr>
-</table>
+如果依旧无法运行（基本不太可能），可尝试删除根目录下 /node_modules 文件夹与 pnpm-lock.yaml 文件后，再删除 package.json 中 "preinstall": "npx only-allow pnpm" 这句脚本，最后使用 npm / yarn 进行安装依赖。但需要清楚一点，这样操作后，将无法与官方环境锁定的依赖包版本保持一致，可能会出现无法预知的问题，非必要情况下，请勿使用该方案。
