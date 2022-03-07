@@ -110,7 +110,7 @@ export default {
             <el-col :md="12">
                 <page-main style="margin: 10px 0;height: 400px">
                     机器人日志：
-                    <page-main style="margin: 10px 0;height: 335px;background:black;color:green;font-size:10px">
+                    <page-main style="margin: 10px 0;height: 335px;background: black;color: green;font-size: 10px">
                         <pre>{{ botlog }}</pre>
                     </page-main>
                 </page-main>
@@ -118,7 +118,7 @@ export default {
             <el-col :md="12">
                 <page-main style="margin: 10px 0;height: 400px">
                     主账户日志：
-                    <page-main style="margin: 10px 0;height: 335px;background:black;color:green;font-size:10px">
+                    <page-main style="margin: 10px 0;height: 335px;background: black;color: green;font-size: 10px">
                         <pre>{{ zionlog }}</pre>
                     </page-main>
                 </page-main>
