@@ -478,6 +478,6 @@ if __name__ == "__main__":
     # 绑定一个监听端口
     http_server = HTTPServer(app)
     http_server.bind(options.port)
-    http_server.start()
+    http_server.start(1)
     # 启动web程序，开始监听端口的连接
     IOLoop.current().start()

@@ -26,7 +26,7 @@ export default {
             this.bot_start_return = true
             const {
                 data: bot_start_return
-            } = await axios.get('http://127.0.0.1:8044/bot/start')
+            } = await axios.get('http://23.225.15.47:8044/bot/start')
             console.log(bot_start_return)
             this.bot_start_return = bot_start_return.status
         },
@@ -34,7 +34,7 @@ export default {
             this.bot_stop_return = true
             const {
                 data: bot_stop_return
-            } = await axios.get('http://127.0.0.1:8044/bot/stop')
+            } = await axios.get('http://23.225.15.47:8044/bot/stop')
             console.log(bot_stop_return)
             this.bot_stop_return = bot_stop_return.status
         },
@@ -42,7 +42,7 @@ export default {
             this.zion_start_return = true
             const {
                 data: zion_start_return
-            } = await axios.get('http://127.0.0.1:8044/zion/start')
+            } = await axios.get('http://23.225.15.47:8044/zion/start')
             console.log(zion_start_return)
             this.zion_start_return = zion_start_return.status
         },
@@ -50,7 +50,7 @@ export default {
             this.zion_stop_return = true
             const {
                 data: zion_stop_return
-            } = await axios.get('http://127.0.0.1:8044/zion/stop')
+            } = await axios.get('http://23.225.15.47:8044/zion/stop')
             console.log(zion_stop_return)
             this.zion_stop_return = zion_stop_return.status
         },
