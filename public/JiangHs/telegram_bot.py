@@ -226,56 +226,6 @@ def validate_key(key):
 #         0:卡密不存在1:卡密失效 other:充值成功的面额
 
 
-def forward_messages():
-    with zion_app:
-        for l in config.sections():
-            try:
-                if l == "pyrogram":
-                    continue
-                if config.get(l, "title") in no_group_title or l[0] != "-":
-                    continue
-                if config.get(l, 'limit') == config.get(l, 'count'):
-                    continue
-                zy_group_id = l
-                chat = zion_app.get_chat(zy_group_id)
-                config.set(zy_group_id, "title", chat['title'])
-                limit = int(config.get(zy_group_id, "limit"))
-                count = zion_app.get_history_count(zy_group_id)
-                config.set(zy_group_id, 'count', str(count))
-                for j in range(limit, int(count), 100):
-                    logging.info(l + ":" + "Forward messages:(" + str(j) + "/" + str(count) + ")")
-                    history = zion_app.get_history(zy_group_id, offset=j, reverse=True)
-                    for i in tqdm(history):
-                        if 'video' in i['media']:
-                            zion_app.forward_messages(my_group_id, zy_group_id, i['message_id'],
-                                                      disable_notification=True)
-                        else:
-                            continue
-                    config.set(zy_group_id, 'limit', str(j))
-                    config.write(open(config_path, "w+"))
-                    zion_logger.info(l + ": " + str(limit) + " over")
-            except:
-                zion_logger.debug(l + "have a error: except")
-                continue
-        zion_logger.info("Forward messages over!")
-
-
-def get_config():
-    with zion_app:
-        for dialog in tqdm(zion_app.iter_dialogs()):
-            id = str(dialog['chat']['id'])
-            title = str(dialog['chat']['title'])
-            limit = "1"
-            if id not in config.sections():
-                config.add_section(id)
-                config.set(id, 'limit', limit)
-            config.set(id, 'title', title)
-            config.set(id, 'count', str(zion_app.get_history_count(dialog['chat']['id'])))
-            config.set(id, 'username', str(dialog['chat']['username']))
-            config.set(id, 'first_name', str(dialog['chat']['first_name']))
-            config.write(open(config_path, "w+"))
-
-
 def fetch_list_by_filter(cursor, pk):
     sql = 'select * from video where width > %d' % pk
     cursor.execute(sql)

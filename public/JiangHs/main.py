@@ -8,6 +8,7 @@ from flask import Flask
 from gevent import pywsgi
 import logging
 import logging.handlers
+import time
 
 # flask框架
 flaskapp = Flask(__name__)
@@ -59,36 +60,40 @@ bot_app = Client(
 
 def forward_messages():
     with zion_app:
-        for l in config.sections():
-            try:
-                if l == "pyrogram":
+        try:
+            zion_app.run(get_config())
+        except:
+            for l in config.sections():
+                try:
+                    if l == "pyrogram":
+                        continue
+                    if config.get(l, "title") in no_group_title or l[0] != "-":
+                        continue
+                    if config.get(l, 'limit') == config.get(l, 'count'):
+                        continue
+                    zy_group_id = l
+                    chat = zion_app.get_chat(zy_group_id)
+                    config.set(zy_group_id, "title", chat['title'])
+                    limit = int(config.get(zy_group_id, "limit"))
+                    count = zion_app.get_history_count(zy_group_id)
+                    config.set(zy_group_id, 'count', str(count))
+                    for j in range(limit, int(count), 100):
+                        logging.info(l + ":" + "Forward messages:(" + str(j) + "/" + str(count) + ")")
+                        history = zion_app.get_history(zy_group_id, offset=j, reverse=True)
+                        for i in tqdm(history):
+                            if 'video' in i['media']:
+                                time.sleep(1)
+                                zion_app.forward_messages(my_group_id, zy_group_id, i['message_id'],
+                                                          disable_notification=True)
+                            else:
+                                continue
+                        config.set(zy_group_id, 'limit', str(j))
+                        config.write(open(config_path, "w+"))
+                        zion_logger.info(l + ": " + str(limit) + " over")
+                except:
+                    zion_logger.debug(l + " have a error: except")
                     continue
-                if config.get(l, "title") in no_group_title or l[0] != "-":
-                    continue
-                if config.get(l, 'limit') == config.get(l, 'count'):
-                    continue
-                zy_group_id = l
-                chat = zion_app.get_chat(zy_group_id)
-                config.set(zy_group_id, "title", chat['title'])
-                limit = int(config.get(zy_group_id, "limit"))
-                count = zion_app.get_history_count(zy_group_id)
-                config.set(zy_group_id, 'count', str(count))
-                for j in range(limit, int(count), 100):
-                    logging.info(l + ":" + "Forward messages:(" + str(j) + "/" + str(count) + ")")
-                    history = zion_app.get_history(zy_group_id, offset=j, reverse=True)
-                    for i in tqdm(history):
-                        if 'video' in i['media']:
-                            zion_app.forward_messages(my_group_id, zy_group_id, i['message_id'],
-                                                      disable_notification=True)
-                        else:
-                            continue
-                    config.set(zy_group_id, 'limit', str(j))
-                    config.write(open(config_path, "w+"))
-                    zion_logger.info(l + ": " + str(limit) + " over")
-            except:
-                zion_logger.debug(l + "have a error: except")
-                continue
-        zion_logger.info("Forward messages over!")
+            zion_logger.info("Forward messages over!")
 
 
 def get_config():
@@ -160,19 +165,5 @@ def create_one(i):
         select_one(um.cursor)
 
 
-@flaskapp.route('/zion/forward_messages')
-def main():
-    try:
-        zion_app.run(forward_messages())
-        zion_logger.info("forward_messages start ok")
-    except:
-        zion_logger.debug("flask: error")
-    # asyncio.run(getme())
-    # zion_app.run(getme())
-
-
 if __name__ == "__main__":
-    # flaskapp.run(host='0,0,0,0', port=80, debug=True)
-    server = pywsgi.WSGIServer(('0.0.0.0', 8044), flaskapp)
-    server.serve_forever()
-    zion_logger.info('flask start ok')
+    zion_app.run(forward_messages())

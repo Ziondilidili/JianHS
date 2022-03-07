@@ -1,4 +1,3 @@
-开始
 # 版本：v0.1
 
 做好准备工作后，请在项目根目录下依次执行以下命令：
@@ -31,7 +30,7 @@ nohup node index.js &
 exit
 
 # 启动python（telegram用的pyrogram）
-cd public/JiangHs
+cd telegram/JianHS/public/JiangHs
 
 python3.6 telegram_bot.py
 

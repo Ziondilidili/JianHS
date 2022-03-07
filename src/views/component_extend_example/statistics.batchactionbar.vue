@@ -36,14 +36,14 @@ export default {
         async editBtn(limit) {
             const {
                 data: res
-            } = await axios.get(`http://localhost:3000/api/user/video/${limit}`)
+            } = await axios.get(`http://23.225.15.47:3000/api/user/video/${limit}`)
             // console.log(res)
             this.video = res
         },
         async get_count() {
             const {
                 data: res
-            } = await axios.get('http://localhost:3000/api/user/videocount')
+            } = await axios.get('http://23.225.15.47:3000/api/user/videocount')
             this.totle = res[0].count
             // document.getElementById('count').innerHTML = '总数：' + res[0].count
             // console.log(this.aboutpage.totle)
