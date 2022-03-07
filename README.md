@@ -7,13 +7,17 @@ pnpm install
 
 # 运行
 pnpm run dev
+
 nohup pnpm run dev &
+
 运行成功后，会自动访问页面，默认情况下，地址为 http://localhost:9000
 外网访问地址为http://ip:9000 或者 http://ip:9001
 
 # 启动数据库
 cd server
+
 node index.js
+
 nohup node index.js &
 
 # 启动python（telegram用的pyrogram）
