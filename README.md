@@ -20,9 +20,12 @@ node index.js
 
 nohup node index.js &
 
+
 # 启动python（telegram用的pyrogram）
 cd public/JiangHs
+
 python3.6 telegram_bot.py
+
 nohup python3.6 telegram_bot.py &
 
 注意
