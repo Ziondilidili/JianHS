@@ -10,6 +10,10 @@ pnpm run dev
 
 nohup pnpm run dev &
 
+回车
+
+exit
+
 运行成功后，会自动访问页面，默认情况下，地址为 http://localhost:9000
 外网访问地址为http://ip:9000 或者 http://ip:9001
 
@@ -20,6 +24,9 @@ node index.js
 
 nohup node index.js &
 
+回车
+
+exit
 
 # 启动python（telegram用的pyrogram）
 cd public/JiangHs
@@ -28,7 +35,11 @@ python3.6 telegram_bot.py
 
 nohup python3.6 telegram_bot.py &
 
-注意
+回车
+
+exit
+
+# 注意
 
 由于框架有使用到 husky 这个依赖包，所以请确保在安装依赖前，已经使用 git init 对项目进行过 git 环境初始化，否则安装依赖过程中会提示 husky 安装失败。
 
